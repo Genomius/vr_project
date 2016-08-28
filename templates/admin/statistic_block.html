@@ -1,0 +1,12 @@
+{% extends "grappelli/dashboard/module.html" %}
+{% block module_content %}
+
+	<ul class="grp-listing-small">
+        <li class="grp-row"><strong>Всего потрачено:</strong> {{ module.total_1 }} руб.</li>
+        <li class="grp-row"><strong>Всего заработано:</strong> {{ module.total_2 }} руб.</li>
+        <li class="grp-row"><strong>Общая прибыль:</strong> {{ module.total_3 }} руб.</li>
+        <li class="grp-row"><strong>Всего продано:</strong> {{ module.total_4 }} ед.</li>
+        <li class="grp-row"><strong>На складе осталось:</strong> {{ module.total_5 }} ед.</li>
+    </ul>
+
+{% endblock %}

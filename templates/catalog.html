@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block title %}Каталог{% endblock %}
+
+{% block page_content %}
+    {% for product in products %}
+        {{ product.title }}<br>
+        <a href="/product/{{ product.slug }}"><img src="{{ product.get_thumb_image }}"></a><br>
+        {{ product.price }}<br><br>
+    {% endfor %}
+{% endblock %}
