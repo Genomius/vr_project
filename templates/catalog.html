@@ -6,7 +6,7 @@
 {% block page_content %}
     {% for product in products %}
         {{ product.title }}<br>
-        <a href="/product/{{ product.slug }}"><img src="{{ product.get_thumb_image }}"></a><br>
-        {{ product.price }}<br><br>
+        <a href="{{ product.get_product_url }}"><img src="{{ product.get_thumb_image }}"></a><br>
+        {{ product.price }}<br>
     {% endfor %}
 {% endblock %}

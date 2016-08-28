@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block title %}Корзина{% endblock %}
+
+{% block page_content %}
+     {% for product in cart.products_in_cart.all %}
+        Товар: {{ product.product.title }}<br>
+        Количество: {{ product.quantity }}<br>
+        Цена за единицу:{{ product.product.price }}<br>
+        Всего за товар: {{ product.cost_of_products }}<br>
+        </br></br></br>
+    {% endfor %}
+
+    {% if cart.total_price == 0 %}
+        Корзина пуста<br>
+    {% endif %}
+
+    Всего: {{ cart.total_price }}р.
+    </br></br>
+
+    <form action="{% url "cart:order" %}" method="get" class="form">{% csrf_token %}
+        <button class="button" id="button-order">
+            <span class="">Оформить заказ</span>
+        </button>
+    </form>
+{% endblock %}

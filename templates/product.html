@@ -5,6 +5,19 @@
 
 {% block page_content %}
     {{ product.title }}<br>
-    <a href="/product/{{ product.slug }}"><img src="{{ product.get_thumb_image }}"></a><br>
+    <img src="{{ product.get_thumb_image }}"><br>
     {{ product.price }}<br><br>
+    <form action="{% url "cart:add" %}" method="post" class="form">{% csrf_token %}
+        Кол-во
+        <div class="wrap-qty">
+            <span class="add-down add-action">-</span>
+            <input type="text" name="quantity" size="2" value="1"/>
+            <span class="add-up add-action">+</span>
+        </div>
+        <input type="hidden" name="product" value="{{ product.id }}"/>
+
+        <button class="button" id="button-cart">
+            <span class=""> Купить</span>
+        </button>
+    </form>
 {% endblock %}

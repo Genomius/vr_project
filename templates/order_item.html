@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block title %}Заказ #{{ order.id }}{% endblock %}
+
+{% block page_content %}
+    {% for product in products_in_cart %}
+        {{ product }}<br>
+    {% endfor %}
+    {{ order.price }}<br>
+    {{ order_url }}
+{% endblock %}

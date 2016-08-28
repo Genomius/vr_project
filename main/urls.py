@@ -3,8 +3,7 @@ import views
 
 
 urlpatterns = [
-    'main.views',
-    url(r'^$/', views.main, name='main'),
+    url(r'^$', views.main, name='main'),
 ]
 
 

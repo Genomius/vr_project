@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block title %}Заказ{% endblock %}
+
+{% block page_content %}
+    <!--<form action="{% url "cart:order" %}" method="post" class="form">{% csrf_token %}-->
+        <!--{{ order_form.non_field_errors }}-->
+        <!--<div class="fieldWrapper">-->
+            <!--{{ order_form.name.errors }}-->
+            <!--<label for="id_name">Укажиите Ваше ФИО</label>-->
+            <!--{{ order_form.name }}-->
+        <!--</div>-->
+        <!--<div class="fieldWrapper">-->
+            <!--{{ order_form.phone.errors }}-->
+            <!--<label for="id_phone">Укажите номер телефона</label>-->
+            <!--{{ order_form.phone }}-->
+        <!--</div>-->
+        <!--<div class="fieldWrapper">-->
+            <!--{{ order_form.email.errors }}-->
+            <!--<label for="id_email">Не обязательно, укажите email</label>-->
+            <!--{{ order_form.email }}-->
+        <!--</div>-->
+        <!--<div class="fieldWrapper">-->
+            <!--{{ order_form.isDelivery.errors }}-->
+            <!--<label for="id_isDelivery">Нужна доставка ?</label>-->
+            <!--{{ order_form.isDelivery }}-->
+        <!--</div>-->
+        <!--<div class="fieldWrapper">-->
+            <!--{{ order_form.address.errors }}-->
+            <!--<label for="id_address">Укажите адрес для доставки</label>-->
+            <!--{{ order_form.address }}-->
+        <!--</div>-->
+        <!--<button class="button" id="button-order">-->
+            <!--<span class="">Заказать!</span>-->
+        <!--</button>-->
+    <!--</form>-->
+    <form action="{% url "cart:order" %}" method="post">
+        {% csrf_token %}
+        {{ order_form }}
+    <input type="submit" value="Submit" />
+</form>
+{% endblock %}

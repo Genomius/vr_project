@@ -39,9 +39,15 @@ class Product(models.Model):
             summ += product.in_stoke_count
         return summ
 
+    def get_product_url(self):
+        return '/catalog/%s' % self.slug
+
     def get_thumb_image(self):
         resize_img = get_thumbnail(self.image, '114x86', crop='center')
         return resize_img.url
+
+    def preview_image_url(self):
+        return '<a href="' + str(self.id) + '/"><img src="%s"/></a>' % self.get_thumb_image()
 
     def __unicode__(self):
         return self.title
@@ -49,6 +55,9 @@ class Product(models.Model):
     class Meta:
         verbose_name = u'продукт'
         verbose_name_plural = u'Продукт'
+
+    preview_image_url.short_description = 'Изображение'
+    preview_image_url.allow_tags = True
 
 
 class ProductImage(models.Model):

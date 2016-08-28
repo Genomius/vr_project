@@ -1,0 +1,12 @@
+Спасибо за заказ
+Ваш номер заказа: #{{ order.id }}
+Сумма заказа: {{ order.price }}руб.
+Ссылка на заказ: http://{{ DOMAIN_NAME }}{{ order.get_absolute_url }}
+
+-----------------------
+{% for product_in_cart in products_in_cart.product %}
+	{{ forloop.counter }} | {{ product_in_cart.product.title }} {{ DOMAIN_NAME }}{{ product_in_cart.product.get_product_url }} | Кол-во: {{ product_in_cart.quantity }}
+{% endfor %}
+-----------------------
+
+С уважением, Денис, менеджер сайта {{ DOMAIN_NAME }}

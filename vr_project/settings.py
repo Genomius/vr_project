@@ -7,6 +7,8 @@ SECRET_KEY = 'b&5uc@#sp6uczbp70yv2usa_qv!#4f*=m$k)k-^l(k8qhsi_^7'
 DEBUG = True
 ALLOWED_HOSTS = []
 
+DOMAIN_NAME = "VR55.ru"
+
 INSTALLED_APPS = [
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -19,6 +21,7 @@ INSTALLED_APPS = [
     'django.contrib.admin',
     'main',
     'catalog',
+    'cart',
 ]
 
 MIDDLEWARE = [
@@ -93,3 +96,14 @@ STATICFILES_DIRS = (
 
 GRAPPELLI_ADMIN_TITLE = 'VRproject'
 GRAPPELLI_INDEX_DASHBOARD = 'vr_project.dashboard.CustomIndexDashboard'
+
+email_from = "denis.baylo@gmail.com"
+
+MAIL_USE_TLS = False
+EMAIL_HOST = 'smtp.yandex.ru'
+EMAIL_PORT = 25
+EMAIL_HOST_USER = 'denis.baylo@gmail.com'
+SERVER_EMAIL = 'denis.baylo@gmail.com'
+EMAIL_HOST_PASSWORD = 'denisdenis688192'
+EMAIL_SUBJECT_PREFIX = '[VR55]'
+DEFAULT_FROM_EMAIL = 'denis.baylo@gmail.com'

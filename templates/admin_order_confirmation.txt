@@ -1,0 +1,18 @@
+Заказ на сайте: #{{ order.id }}
+Сумма заказа: {{ order.price }}руб.
+Ссылка на заказ: http://{{ DOMAIN_NAME }}{{ order.get_absolute_url }}
+-----------------------
+
+ФИО: {{ order.name }}
+{% if order.email %}Email: {{ order.email }}{% endif %}
+Телефон: {{ order.phone }}
+{% if order.address %}Адрес доставки: {{ order.address }}{% endif %}
+Тип оплаты: {{ order.payment_type }}
+
+-----------------------
+{% for product_in_cart in products_in_cart.product %}
+	{{ forloop.counter }} | {{ product_in_cart.product.title }} {{ DOMAIN_NAME }}{{ product_in_cart.product.get_product_url }} | Кол-во: {{ product_in_cart.quantity }}
+{% endfor %}
+-----------------------
+
+{{ DOMAIN_NAME }}
