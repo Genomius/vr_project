@@ -6,7 +6,7 @@ from models import Cart, ProductInCart, Order
 import simplejson
 from django.views.decorators.csrf import csrf_exempt
 from forms import ProductInCartForm, OrderForm
-from django.core.mail import send_mail
+from django.core.mail import send_mail, mail_admins
 from vr_project import settings
 from django.template.loader import render_to_string
 
@@ -113,12 +113,14 @@ def order(request):
             order_form.secret = Order.get_random_id()
             order_form.save()
 
-            del request.session["cart_id"]
+            #TODO: Убрать комментарий после дебага
+            #del request.session["cart_id"]
             products_in_cart = ProductInCart.objects.filter(cart=cart.id)
 
-            if not settings.DEBUG:
-                # Отправляем письмо клиенту с данными о заказе
-                #if order_form.email:
+            #TODO: Убрать комментарий после дебага
+            #if not settings.DEBUG:
+            # Отправляем письмо клиенту с данными о заказе
+            if order_form.email:
                 message = render_to_string('order_confirmation.txt',
                                            {
                                                'order': order_form,
@@ -128,17 +130,17 @@ def order(request):
                 )
                 send_mail(settings.EMAIL_SUBJECT_PREFIX, message, settings.EMAIL_HOST_USER, [order_form.email, ])
 
-                # Отправляем уведомительное письмо админу
-                message = render_to_string('admin_order_confirmation.txt',
-                                           {
-                                               'order': order_form,
-                                               'products_in_cart': products_in_cart,
-                                               'DOMAIN_NAME': settings.DOMAIN_NAME
-                                           }
-                )
-                send_mail(settings.EMAIL_SUBJECT_PREFIX, message, settings.EMAIL_HOST_USER, [settings.EMAIL_HOST_USER, ])
+            # Отправляем уведомительное письмо админу
+            message = render_to_string('admin_order_confirmation.txt',
+                                       {
+                                           'order': order_form,
+                                           'products_in_cart': products_in_cart,
+                                           'DOMAIN_NAME': settings.DOMAIN_NAME
+                                       }
+            )
+            mail_admins(settings.EMAIL_SUBJECT_PREFIX, message)
 
-            return HttpResponseRedirect(reverse('cart:thanks', kwargs={'order_url': order_form.secret}))
+            return HttpResponseRedirect(reverse('cart:thanks', kwargs={'order_id': order_form.id}))
         else:
             return render_to_response(
                 'order.html',
@@ -159,8 +161,9 @@ def order(request):
         )
 
 
+#TODO: Убрать @csrf_exempt где не надо
 @csrf_exempt
-def order_item(request, secret):
+def order_detail(request, secret):
     order = get_object_or_404(Order, secret=secret)
     form = OrderForm(instance=order)
     products_in_cart = ProductInCart.objects.filter(cart=order.cart)
@@ -173,12 +176,12 @@ def order_item(request, secret):
                               }
     )
 
-#TODO: Передать в thanks order.secret
-def thanks(request, secret):
-    print secret
+
+def thanks(request, order_id):
     return render_to_response(
         'thanks.html',
         {
-            'order_url': '',
+            'order': Order.objects.get(id=order_id),
+            'DOMAIN_NAME': settings.DOMAIN_NAME
         }
     )

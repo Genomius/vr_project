@@ -11,6 +11,7 @@ PAYMENT_TYPE = (
     ('Internet', u'Электронными'),
 )
 
+
 class Cart(models.Model):
     add_date = models.DateTimeField(u'Время добавления', auto_now_add=True)
 
@@ -36,7 +37,7 @@ class Cart(models.Model):
 class ProductInCart(models.Model):
     cart = models.ForeignKey(Cart, related_name='products_in_cart')
 
-    product = models.ForeignKey(Product, verbose_name="Продукт")
+    product = models.ForeignKey(Product, verbose_name="Продукт", related_name='product')
     quantity = models.IntegerField(u'Количество', default=1)
 
     def __unicode__(self):
@@ -78,5 +79,8 @@ class Order(models.Model):
     def get_random_id():
         return uuid.uuid1()
 
+    def get_order_detail(self):
+        return reverse('order_detail', args=[self.secret])
+
     def get_absolute_url(self):
-        return reverse('order_item', args=[self.secret])
+        return '/cart/order/%s' % self.secret

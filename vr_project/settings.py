@@ -4,10 +4,13 @@ import os
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 SECRET_KEY = 'b&5uc@#sp6uczbp70yv2usa_qv!#4f*=m$k)k-^l(k8qhsi_^7'
-DEBUG = True
-ALLOWED_HOSTS = []
+DEBUG = False
+DOMAIN_NAME = "127.0.0.1:5555"
+ALLOWED_HOSTS = [DOMAIN_NAME, '127.0.0.1', 'localhost']
 
-DOMAIN_NAME = "VR55.ru"
+ADMINS = (
+    ('Denis Baylo', 'denis.baylo@gmail.com'),
+)
 
 INSTALLED_APPS = [
     'django.contrib.auth',
@@ -99,11 +102,11 @@ GRAPPELLI_INDEX_DASHBOARD = 'vr_project.dashboard.CustomIndexDashboard'
 
 email_from = "denis.baylo@gmail.com"
 
-MAIL_USE_TLS = False
-EMAIL_HOST = 'smtp.yandex.ru'
-EMAIL_PORT = 25
-EMAIL_HOST_USER = 'denis.baylo@gmail.com'
-SERVER_EMAIL = 'denis.baylo@gmail.com'
-EMAIL_HOST_PASSWORD = 'denisdenis688192'
-EMAIL_SUBJECT_PREFIX = '[VR55]'
-DEFAULT_FROM_EMAIL = 'denis.baylo@gmail.com'
+EMAIL_USE_TLS = True
+DEFAULT_FROM_EMAIL = 'seereebro@mail.ru'
+EMAIL_HOST = 'smtp.mail.ru'
+EMAIL_PORT = 2525
+EMAIL_HOST_USER = DEFAULT_FROM_EMAIL
+SERVER_EMAIL = DEFAULT_FROM_EMAIL
+EMAIL_HOST_PASSWORD = 'deniskas'
+EMAIL_SUBJECT_PREFIX = '[' + DOMAIN_NAME + ']'

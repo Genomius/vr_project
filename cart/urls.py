@@ -13,7 +13,7 @@ urlpatterns = [
     # Страница оплаты
     url(r'^order/$', views.order, name='order'),
     # Страница благодарности
-    url(r'^thanks/(?P<secret>[\w-]+)/$', views.thanks, name='thanks'),
+    url(r'^thanks/(?P<order_id>[0-9]+)/$', views.thanks, name='thanks'),
     # Страница с детализацией заказа
-    url(r'^order/(?P<secret>[\w-]+)/$', views.order_item, name='order_item'),
+    url(r'^order/(?P<secret>[\w-]+)/$', views.order_detail, name='order_item'),
 ]
