@@ -4,6 +4,10 @@
 {% block title %}Корзина{% endblock %}
 
 {% block page_content %}
+    <button id="cart-selection" class="active-btn-in-cart">Корзина</button>
+    <button id="order-selection">Заказ</button>
+    <button id="thanks-selection">Подтверждение</button><br>
+
      {% for product in cart.products_in_cart.all %}
         Товар: {{ product.product.title }}<br>
         Количество: {{ product.quantity }}<br>
@@ -19,9 +23,9 @@
     Всего: {{ cart.total_price }}р.
     </br></br>
 
+    <a href="/" id="return_to_catalog">Обратно к каталогу</a>
     <form action="{% url "cart:order" %}" method="get" class="form">{% csrf_token %}
-        <button class="button" id="button-order">
-            <span class="">Оформить заказ</span>
-        </button>
+        <button class="button" id="order-create">Оформить заказ</button>
     </form>
+
 {% endblock %}

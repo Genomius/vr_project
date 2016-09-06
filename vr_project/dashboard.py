@@ -72,6 +72,16 @@ class CustomIndexDashboard(Dashboard):
                     'url': 'https://ru.aliexpress.com/item/VR-Box-3d-glasses-for-mobile-Virtual-Reality-Headset-Head-Mount-Goggles-Oculus-Rift-Google-Cardboard/32673135081.html?spm=2114.30010708.3.1.dcAJTO&ws_ab_test=searchweb201556_0,searchweb201602_3_10039_10048_10057_10047_10056_10065_10055_10054_10059_10046_10058_10045_10017_107_10060_10061_10052_414_10062_10053_10050_10051,searchweb201603_2&btsid=9198cc60-0a67-4569-9d33-d7d80ba9e15f',
                     'external': True,
                 },
+                {
+                    'title': u'Google Cardboard Official Site',
+                    'url': 'https://vr.google.com/cardboard/get-cardboard/',
+                    'external': True,
+                },
+                {
+                    'title': u'Описание очков',
+                    'url': 'https://vc.ru/p/vrglass-review',
+                    'external': True,
+                },
             ]
         ))
 

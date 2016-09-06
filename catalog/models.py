@@ -3,6 +3,7 @@ from __future__ import unicode_literals
 from django.db import models
 from sorl.thumbnail import get_thumbnail
 from importlib import import_module
+from sys import getsizeof
 
 
 def get_product_image_path(instance, filename):
@@ -11,6 +12,24 @@ def get_product_image_path(instance, filename):
 
 def get_product_image_image_path(instance, filename):
     return 'products/%s/%s' % (instance.product.slug, filename)
+
+
+def get_max_price():
+    products = Product.objects.all()
+    max_price = 0
+    for product in products:
+        if product.price > max_price:
+            max_price = product.price
+    return max_price
+
+
+def get_min_price():
+    products = Product.objects.all()
+    min_price = getsizeof(int)
+    for product in products:
+        if product.price < min_price:
+            min_price = product.price
+    return min_price
 
 
 class Product(models.Model):
@@ -44,6 +63,10 @@ class Product(models.Model):
 
     def get_thumb_image(self):
         resize_img = get_thumbnail(self.image, '114x86', crop='center')
+        return resize_img.url
+
+    def get_catalog_image(self):
+        resize_img = get_thumbnail(self.image, '270x220', crop='center')
         return resize_img.url
 
     def preview_image_url(self):

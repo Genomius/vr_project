@@ -1,10 +1,11 @@
+# coding: utf-8
 import os
 
-
+#TODO: Добавить версии в requirements.txt
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 SECRET_KEY = 'b&5uc@#sp6uczbp70yv2usa_qv!#4f*=m$k)k-^l(k8qhsi_^7'
-DEBUG = False
+DEBUG = True
 DOMAIN_NAME = "127.0.0.1:5555"
 ALLOWED_HOSTS = [DOMAIN_NAME, '127.0.0.1', 'localhost']
 
@@ -25,6 +26,7 @@ INSTALLED_APPS = [
     'main',
     'catalog',
     'cart',
+    'comments',
 ]
 
 MIDDLEWARE = [

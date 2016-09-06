@@ -1,0 +1,15 @@
+<ul class="gallery-post-grid holder">
+    {% for product in products %}
+        <!-- Gallery Item -->
+        <li class="span3 gallery-item" data-id="id-1" data-type="illustration">
+            <span class="gallery-hover-4col hidden-phone hidden-tablet">
+                <span class="gallery-icons">
+                    <a href="img/gallery/gallery-img-1-full.jpg" class="item-zoom-link lightbox" title="Custom Illustration" data-rel="prettyPhoto"></a>
+                    <a href="{{ product.get_product_url }}" class="item-details-link"></a>
+                </span>
+            </span>
+            <a href="{{ product.get_product_url }}"><img src="{{ product.get_catalog_image }}" alt="{{ product.title }}"></a>
+            <span class="project-details"><a href="{{ product.get_product_url }}">{{ product.title }}</a>{{ product.price }}р.</span>
+        </li>
+    {% endfor %}
+</ul>
